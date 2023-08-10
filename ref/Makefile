@@ -57,17 +57,17 @@ libpqcrystals_fips202_ref.so: fips202.c fips202.h
 libpqcrystals_aes256ctr_ref.so: aes256ctr.c aes256ctr.h
 	$(CC) -shared -fPIC $(CFLAGS) -o $@ $<
 
-libpqcrystals_dilithium2_ref.so: $(SOURCES) $(HEADERS) symmetric-shake.c
+libpqcrystals_dilithium2_ref.so: $(SOURCES) $(HEADERS) symmetric-shake.c fips202.c randombytes.c
 	$(CC) -shared -fPIC $(CFLAGS) -DDILITHIUM_MODE=2 \
-	  -o $@ $(SOURCES) symmetric-shake.c
+	  -o $@ $(SOURCES) symmetric-shake.c fips202.c randombytes.c
 
-libpqcrystals_dilithium3_ref.so: $(SOURCES) $(HEADERS) symmetric-shake.c
+libpqcrystals_dilithium3_ref.so: $(SOURCES) $(HEADERS) symmetric-shake.c fips202.c randombytes.c
 	$(CC) -shared -fPIC $(CFLAGS) -DDILITHIUM_MODE=3 \
-	  -o $@ $(SOURCES) symmetric-shake.c
+	  -o $@ $(SOURCES) symmetric-shake.c fips202.c randombytes.c
 
-libpqcrystals_dilithium5_ref.so: $(SOURCES) $(HEADERS) symmetric-shake.c
+libpqcrystals_dilithium5_ref.so: $(SOURCES) $(HEADERS) symmetric-shake.c fips202.c randombytes.c
 	$(CC) -shared -fPIC $(CFLAGS) -DDILITHIUM_MODE=5 \
-	  -o $@ $(SOURCES) symmetric-shake.c
+	  -o $@ $(SOURCES) symmetric-shake.c fips202.c randombytes.c
 
 libpqcrystals_dilithium2aes_ref.so: $(SOURCES) $(HEADERS) symmetric-aes.c
 	$(CC) -shared -fPIC $(CFLAGS) -DDILITHIUM_MODE=2 -DDILITHIUM_USE_AES \
