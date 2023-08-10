@@ -51,11 +51,21 @@ shared: \
   libpqcrystals_fips202_ref.so \
   libpqcrystals_aes256ctr_ref.so
 
+shared_mac: \
+	libpqcrystals_dilithium2_ref.dylib
+
+
 libpqcrystals_fips202_ref.so: fips202.c fips202.h
 	$(CC) -shared -fPIC $(CFLAGS) -o $@ $<
 
 libpqcrystals_aes256ctr_ref.so: aes256ctr.c aes256ctr.h
 	$(CC) -shared -fPIC $(CFLAGS) -o $@ $<
+
+libpqcrystals_dilithium2_ref.dylib: $(SOURCES) $(HEADERS) symmetric-shake.c fips202.c randombytes.c
+	$(CC) -dynamiclib -fPIC $(CFLAGS) -DDILITHIUM_MODE=2 \
+	  -o $@ $(SOURCES) symmetric-shake.c fips202.c randombytes.c
+
+
 
 libpqcrystals_dilithium2_ref.so: $(SOURCES) $(HEADERS) symmetric-shake.c fips202.c randombytes.c
 	$(CC) -shared -fPIC $(CFLAGS) -DDILITHIUM_MODE=2 \
