@@ -20,7 +20,7 @@
 *
 * Returns 0 (success)
 **************************************************/
-int crypto_sign_keypair(uint8_t *pk, uint8_t *sk) {
+EXPORT_ATTR int crypto_sign_keypair(uint8_t *pk, uint8_t *sk) {
   uint8_t seedbuf[2*SEEDBYTES + CRHBYTES];
   uint8_t tr[SEEDBYTES];
   const uint8_t *rho, *rhoprime, *key;
@@ -77,7 +77,7 @@ int crypto_sign_keypair(uint8_t *pk, uint8_t *sk) {
 *
 * Returns 0 (success)
 **************************************************/
-int crypto_sign_signature(uint8_t *sig,
+EXPORT_ATTR int crypto_sign_signature(uint8_t *sig,
                           size_t *siglen,
                           const uint8_t *m,
                           size_t mlen,
@@ -221,7 +221,7 @@ int crypto_sign(uint8_t *sm,
 *
 * Returns 0 if signature could be verified correctly and -1 otherwise
 **************************************************/
-int crypto_sign_verify(const uint8_t *sig,
+EXPORT_ATTR int crypto_sign_verify(const uint8_t *sig,
                        size_t siglen,
                        const uint8_t *m,
                        size_t mlen,
@@ -303,7 +303,7 @@ int crypto_sign_verify(const uint8_t *sig,
 *
 * Returns 0 if signed message could be verified correctly and -1 otherwise
 **************************************************/
-int crypto_sign_open(uint8_t *m,
+EXPORT_ATTR int crypto_sign_open(uint8_t *m,
                      size_t *mlen,
                      const uint8_t *sm,
                      size_t smlen,
